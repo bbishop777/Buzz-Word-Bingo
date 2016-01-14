@@ -68,4 +68,24 @@ You will store these objects in memory for the time being. Meaning that if the *
 1. Install the packages you need
 1. Use **Postman** to test your routes.
 1. Remember to commit often!
-# Buzz-Word-Bingo
+
+# Adding Middleware to Buzz Word Bingo
+Now that you have the endpoints built let's (you) build some validations for the data coming over.
+
+Your middleware will check if the request's body contains the required **keys** and also make sure that the values at those keys have values and are of the expected Data-type.
+
+**Example:**
+`POST /buzzword` => `{ "buzzWord": String, "points": Number }`
+
+A **POST** request to the resource `/buzzword` should have two keys: `buzzWord` and `points`. Also be sure that the value stored at each key is of the right data type. e.g. `buzzWord` key should contain a value of `String` data type. `points` key should contain a value of `Number` data type.
+
+## Routes which will need validations
+**Format below:** `[METHOD] [URI]` => `Expected object`
+
+`POST /buzzword` => `{ "buzzWord": String, "points": Number }`
+
+`PUT /buzzword` => `{ "buzzWord": String, "heard": Bool }`
+
+`DELETE /buzzword` => `{ "buzzWord": String }`
+
+`POST /reset` => `{ "reset": true }`
