@@ -16,6 +16,7 @@ server.get('/buzzword', function (req, res) {
   res.status(200).json({buzzwords: buzzwords});
 });
 
+//Function called to  create the object put in the array containing all the key value pairs.
 function createBuzz (req, res) {
   var z;
   if (buzzwords[0].buzzWord === undefined) {
@@ -32,7 +33,8 @@ function createBuzz (req, res) {
 function validatePost(req, res, next) {
 
 }
-
+//middleware checking for presence of all keys required (buzzWord, score, heard) which should all be
+// found in the request.  Also checks to make sure values for those keys are present.
 function validate (req, res, next) {
   var keyArry = ['buzzWord', 'score', 'heard'];
   for(var x = 0; x < keyArry.length; x++) {
@@ -49,7 +51,7 @@ function validate (req, res, next) {
 
 }
 
-
+//Called when post with the route 'buzzword' is called
 server.post('/buzzword', validate, function (req, res) {
   if (buzzwords[0].buzzWord !== undefined) {
     for(var i = 0; i < buzzwords.length; i++) {
@@ -65,6 +67,7 @@ server.post('/buzzword', validate, function (req, res) {
   }
 });
 
+//called when the Put with 'buzzword' route is called
 server.put('/buzzword', validate, function (req, res) {
     if(buzzwords[0].buzzWord !== undefined) {
       for(var y = 0; y < buzzwords.length; y++) {
@@ -106,6 +109,7 @@ server.put('/buzzword', validate, function (req, res) {
     }
 });
 
+//called when delete with 'buzzword' route is called
 server.delete('/buzzword', validate, function (req, res) {
   if(buzzwords[0].buzzWord !== undefined) {
     for(var i = 0; i < buzzwords.length; i++) {
@@ -123,6 +127,7 @@ server.delete('/buzzword', validate, function (req, res) {
   }
 });
 
+//Called when post with route 'reset' is chosen
 server.post('/reset', function (req, res) {
   buzzwords = [{}];
   points= 0;
@@ -130,5 +135,6 @@ server.post('/reset', function (req, res) {
   res.status(200).send('All buzzwords have been erased and points set to zero');
 });
 
+//Sets server to listen on port 3000
 server.listen(3000, function () {
 console.log('Server started: http:localhost: 3000'); });
